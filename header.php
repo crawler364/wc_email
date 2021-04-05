@@ -14,6 +14,7 @@ $serverName = $protocol . "://" . $arParams["SERVER_NAME"];
 $companyName = IsModuleInstalled('bitrix24') ? COption::getOptionString('bitrix24', 'site_title', '') : COption::getOptionString('main', 'site_name');
 $email = Option::get("sale", "order_email");
 $logo = "/local/templates/wc_email/images/logo.png";
+$buttonColor = '#000000';
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -44,8 +45,8 @@ $logo = "/local/templates/wc_email/images/logo.png";
 
         span.button {
             border-style: solid;
-            border-color: #C71D37;
-            background: #C71D37;
+            border-color: <?=$buttonColor?>;
+            background: <?=$buttonColor?>;
             border-width: 0;
             display: inline-block;
             border-radius: 2px;
@@ -62,10 +63,10 @@ $logo = "/local/templates/wc_email/images/logo.png";
             font-size: 14px;
             color: #FFFFFF;
             border-style: solid;
-            border-color: #C71D37;
+            border-color: <?=$buttonColor?>;
             border-width: 10px 20px 10px 20px;
             display: inline-block;
-            background: #C71D37;
+            background: <?=$buttonColor?>;
             border-radius: 2px;
             font-weight: normal;
             font-style: normal;
@@ -101,7 +102,7 @@ $logo = "/local/templates/wc_email/images/logo.png";
                                             <img src="<?= $logo ?>"
                                                  alt=""
                                                  style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
-                                                 width="251" height="45">
+                                                 width="250" height="45">
                                         </a>
                                     </td>
                                 </tr>
