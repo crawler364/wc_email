@@ -3,17 +3,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 }
 
-use Bitrix\Main\Config\Option;
-use Bitrix\Main\Localization\Loc;
-
-Loc::LoadMessages(__FILE__);
+Bitrix\Main\Localization\Loc::LoadMessages(__FILE__);
 
 global $APPLICATION;
-$protocol = Option::get("main", "mail_link_protocol", 'https', $arParams["SITE_ID"]);
-$serverName = $protocol . "://" . $arParams["SERVER_NAME"];
-$companyName = IsModuleInstalled('bitrix24') ? COption::getOptionString('bitrix24', 'site_title', '') : COption::getOptionString('main', 'site_name');
-$email = Option::get("sale", "order_email");
-$logo = "/local/templates/wc_email/images/logo.png";
 $buttonColor = '#000000';
 ?>
 
@@ -26,7 +18,7 @@ $buttonColor = '#000000';
     <meta name="x-apple-disable-message-reformatting" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="telephone=no" name="format-detection">
-    <title><?= $companyName ?></title>
+    <title><? $APPLICATION->IncludeFile('/local/templates/wc_email/include/company.php') ?></title>
     <style type="text/css">
         .table {
             mso-table-lspace: 0;
@@ -97,9 +89,9 @@ $buttonColor = '#000000';
                                 <tbody>
                                 <tr style="border-collapse:collapse;">
                                     <td width="276" align="left" style="padding:0;Margin:0;">
-                                        <a href="<?= $serverName ?>" target="_blank"
+                                        <a href="<? $APPLICATION->IncludeFile('/local/templates/wc_email/include/url.php') ?>" target="_blank"
                                            style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#3498DB;">
-                                            <img src="<?= $logo ?>"
+                                            <img src="/local/templates/wc_email/images/logo.png"
                                                  alt=""
                                                  style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;"
                                                  width="250" height="45">
@@ -118,8 +110,8 @@ $buttonColor = '#000000';
                                             </strong>
                                         </p>
                                         <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:14px;line-height:100%;color:#333333;">
-                                            <strong><a target="_blank" href="mailto:<?= $email ?>"
-                                                       style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#000000;"><?= $email ?></a>
+                                            <strong><a target="_blank" href="mailto:<? $APPLICATION->IncludeFile('/local/templates/wc_email/include/email.php') ?>"
+                                                       style="-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:14px;text-decoration:underline;color:#000000;"><? $APPLICATION->IncludeFile('/local/templates/wc_email/include/email.php') ?></a>
                                                 <span style="color:#000000;"></span></strong>
                                         </p>
                                     </td>
